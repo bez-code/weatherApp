@@ -1,4 +1,52 @@
-<div class="container">
+<div class="container" *ngIf="weatherdata">
+  <div class="upperData">
+    <img
+      src="../assets/hot.jpg"
+      *ngIf="weatherdata.current.temp_c > 15"
+    />
+    <img src="../assets/cold.jpg" *ngIf="weatherdata. <= 15" />
+
+    <div class="weather-data">
+      <div class="location">{{weatherdata.name}}</div>
+      <div class="temperature">{{ weatherdata.main.temp | number : "1.0-0" }}˚F</div>
+    </div>
+  </div>
+  <div class="lowerData">
+    <div class="more-info-data">more information</div>
+    <div class="more-info-container">
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/min.png" alt="" />
+          <span>Min</span>
+        </div>
+        <div class="info-block-value">{{weatherdata.main.temp_min | number : "1.0-0"}}˚F</div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/max.png" alt="" />
+          <span>Max</span>
+        </div>
+        <div class="info-block-value">{{weatherdata.main.temp_max | number : "1.0-0"}}˚F</div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/humidity.png" alt="" />
+          <span>Humidity</span>
+        </div>
+        <div class="info-block-value">{{weatherdata.main.humidity}}</div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/wind.jpeg" alt="" />
+          <span>Wind</span>
+        </div>
+        <div class="info-block-value">{{weatherdata.wind.speed}} km/h</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container">
   <div class="upperData">
     <img
       src="../assets/hot.jpg"
@@ -44,6 +92,6 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <router-outlet></router-outlet>
