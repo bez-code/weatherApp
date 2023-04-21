@@ -40,7 +40,7 @@ body {
   border-top-right-radius: 20px;
 }
 
-.lowerData{
+.lowerData {
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -110,7 +110,7 @@ body {
   justify-content: center;
   align-items: center;
 }
-.more-info-data{
+.more-info-data {
   color: var(--white);
   text-align: center;
   font-size: 1.2em;
@@ -129,4 +129,20 @@ body {
   justify-content: flex-start;
   align-items: center;
   color: var(--white);
+}
+
+.search {
+  margin-top: 1.5em;
+  text-align: center;
+}
+
+.search input {
+  background-color: var(--shadow-light);
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  padding: 1em;
+  color: var(--grey);
+  font-size: 0.8em;
+  text-align: center;
 }

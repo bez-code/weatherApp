@@ -1,14 +1,30 @@
+<div class="search">
+  <form #form="ngForm" (ngSubmit)="onSubmit()">
+    <input
+      type="text"
+      placeholder="Search City"
+      name="city"
+      [(ngModel)]="cityName"
+    />
+  </form>
+</div>
+
 <div class="container" *ngIf="weatherdata">
   <div class="upperData">
     <img
       src="../assets/hot.jpg"
-      *ngIf="weatherdata.current.temp_c > 15"
+      *ngIf="weatherdata.forecast.forecastday[0].day.mintemp_c > 15"
     />
-    <img src="../assets/cold.jpg" *ngIf="weatherdata. <= 15" />
+    <img
+      src="../assets/cold.jpg"
+      *ngIf="weatherdata.forecast.forecastday[0].day.maxtemp_c <= 15"
+    />
 
     <div class="weather-data">
-      <div class="location">{{weatherdata.name}}</div>
-      <div class="temperature">{{ weatherdata.main.temp | number : "1.0-0" }}˚F</div>
+      <div class="location">{{ weatherdata.location.name }}</div>
+      <div class="temperature">
+        {{ weatherdata.current.temp_c | number : "1.0-0" }}˚C
+      </div>
     </div>
   </div>
   <div class="lowerData">
@@ -19,79 +35,43 @@
           <img src="../assets/min.png" alt="" />
           <span>Min</span>
         </div>
-        <div class="info-block-value">{{weatherdata.main.temp_min | number : "1.0-0"}}˚F</div>
+        <div class="info-block-value">
+          {{
+            weatherdata.forecast.forecastday[0].day.mintemp_c
+              | number : "1.0-0"
+          }}˚F
+        </div>
       </div>
       <div class="info-block">
         <div class="info-block-label">
           <img src="../assets/max.png" alt="" />
           <span>Max</span>
         </div>
-        <div class="info-block-value">{{weatherdata.main.temp_max | number : "1.0-0"}}˚F</div>
+        <div class="info-block-value">
+          {{
+            weatherdata.forecast.forecastday[0].day.maxtemp_c
+              | number : "1.0-0"
+          }}˚F
+        </div>
       </div>
       <div class="info-block">
         <div class="info-block-label">
           <img src="../assets/humidity.png" alt="" />
           <span>Humidity</span>
         </div>
-        <div class="info-block-value">{{weatherdata.main.humidity}}</div>
+        <div class="info-block-value">{{ weatherdata.current.humidity }}%</div>
       </div>
       <div class="info-block">
         <div class="info-block-label">
           <img src="../assets/wind.jpeg" alt="" />
           <span>Wind</span>
         </div>
-        <div class="info-block-value">{{weatherdata.wind.speed}} km/h</div>
+        <div class="info-block-value">
+          {{ weatherdata.current.wind_kph }} km/h
+        </div>
       </div>
     </div>
   </div>
 </div>
-
-<!-- <div class="container">
-  <div class="upperData">
-    <img
-      src="../assets/hot.jpg"
-      *ngIf="14 > 15"
-    />
-    <img src="../assets/cold.jpg" *ngIf="14 <= 15" />
-
-    <div class="weather-data">
-      <div class="location">London</div>
-      <div class="temperature">{{ 15.5 | number : "1.0-0" }}˚C</div>
-    </div>
-  </div>
-  <div class="lowerData">
-    <div class="more-info-data">more information</div>
-    <div class="more-info-container">
-      <div class="info-block">
-        <div class="info-block-label">
-          <img src="../assets/min.png" alt="" />
-          <span>Min</span>
-        </div>
-        <div class="info-block-value">10˚C</div>
-      </div>
-      <div class="info-block">
-        <div class="info-block-label">
-          <img src="../assets/max.png" alt="" />
-          <span>Max</span>
-        </div>
-        <div class="info-block-value">22˚C</div>
-      </div>
-      <div class="info-block">
-        <div class="info-block-label">
-          <img src="../assets/humidity.png" alt="" />
-          <span>Humidity</span>
-        </div>
-        <div class="info-block-value">77%</div>
-      </div>
-      <div class="info-block">
-        <div class="info-block-label">
-          <img src="../assets/wind.jpeg" alt="" />
-          <span>Wind</span>
-        </div>
-        <div class="info-block-value">11 km/h</div>
-      </div>
-    </div>
-  </div>
-</div> -->
 
 <router-outlet></router-outlet>
